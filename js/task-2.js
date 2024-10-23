@@ -14,17 +14,20 @@ const images = [
 ];
 
 const gal = document.querySelector('.gallery');
-const galHtml = document.createElement('ul');
+const fragment = document.createDocumentFragment();
 
-for (const imgData of images) { 
+images.forEach(imgData => {
   const li = document.createElement('li');
-  li.classList.add("gallery-item");
+  li.classList.add('gallery-item');
+  
   const img = document.createElement('img');
-  img.classList.add("gallery-image");
+  img.classList.add('gallery-image');
   img.setAttribute('src', imgData.url);
   img.setAttribute('alt', imgData.alt);
-  li.append(img);
-  galHtml.append(li);
-}
+  
+  li.appendChild(img);
+  fragment.appendChild(li);
+});
 
-gal.innerHTML = galHtml.innerHTML;
+gal.appendChild(fragment);
+
